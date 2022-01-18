@@ -1,6 +1,7 @@
 import requests
 import os
 import sys
+from tqdm import tqdm
 
 def create_folder(path):
     if not os.path.isdir(path):
@@ -9,7 +10,7 @@ def create_folder(path):
 def download_images(urls, path):
     create_folder(path)  # makes sure path exists
 
-    for url in urls:
+    for url in tqdm(urls):
         image_name = url.split("/")[-1]
         image_path = os.path.join(path, image_name)
 

@@ -1,7 +1,8 @@
 from flickrapi import FlickrAPI
+from tqdm import tqdm
 
-KEY = 'KEY'
-SECRET = 'SECRET'
+KEY = ''
+SECRET = ''
 
 # List of sizes:
 # url_o: Original (4520 × 3229)
@@ -17,7 +18,7 @@ SECRET = 'SECRET'
 # url_q: Square 150 (150 × 150)
 # url_sq: Square 75 (75 × 75)
 
-SIZES = ["url_o", "url_k", "url_h", "url_l", "url_c"]  # order of preference
+SIZES = ["url_h", "url_l", "url_c"]  # order of preference "url_o", "url_k", 
 
 def get_photos(image_tag):
     extras = ','.join(SIZES)
@@ -40,7 +41,7 @@ def get_urls(image_tag, max):
     counter=0
     urls=[]
 
-    for photo in photos:
+    for photo in tqdm(photos):
         if counter < max:
             url = get_url(photo)  # get preffered size url
             if url:
